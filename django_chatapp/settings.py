@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = "django_chatapp.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "django_pictweet_" + environ.get("APP_ENV", ""),
+        "NAME": "django_chatapp_" + environ.get("APP_ENV", ""),
         "USER": environ.get("MYSQL_USER", ""),
         "PASSWORD": environ.get("MYSQL_PASSWORD", ""),
         "HOST": environ.get("MYSQL_HOST", ""),
@@ -85,6 +86,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "users.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
