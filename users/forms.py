@@ -14,6 +14,7 @@ class AuthenticationForm(BaseAuthenticationForm):
 class UserCreationForm(BaseUserCreationForm):
     class Meta(BaseUserCreationForm.Meta):
         model = User
+        fields = ("username", "email", "password1", "password2")
 
 
 class UserChangeForm(BaseUserChangeForm):
