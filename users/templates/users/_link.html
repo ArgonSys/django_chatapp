@@ -1,8 +1,8 @@
-{% if not from_login_view %}
+{% if not from_login %}
   <a href="{% url 'users:login' %}">Log in</a><br>
 {% endif %}
 
-{% if not from_signup_view %}
+{% if not from_signup %}
   <a href="{% url 'users:signup' %}">Sign up</a><br>
 {% endif %}
 

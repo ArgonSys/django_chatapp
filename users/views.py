@@ -19,6 +19,7 @@ from .forms import(
 class SignupView(CreateView):
     template_name = "users/signup.html"
     form_class = UserCreationForm
+    extra_context = {"from_signup": True}
     success_url = "/"
 
     def form_valid(self, form):
@@ -33,6 +34,7 @@ class SignupView(CreateView):
 class LoginView(BaseLoginView):
     template_name = "users/login.html"
     form_class = AuthenticationForm
+    extra_context = {"from_login": True}
     success_url = "/"
 
 
