@@ -1,7 +1,9 @@
 {% if not from_login_view %}
-  <a href="{% url 'users:login' %}">Log in</a>
+  <a href="{% url 'users:login' %}">Log in</a><br>
 {% endif %}
 
 {% if not from_signup_view %}
-  <a href="{% url 'users:signup' %}">Sign up</a>
+  <a href="{% url 'users:signup' %}">Sign up</a><br>
 {% endif %}
+
+<a href="{% url 'users:password_reset' %}">Forgot your password?</a>

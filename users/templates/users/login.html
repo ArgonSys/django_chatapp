@@ -12,7 +12,16 @@
     <div class="account-page__inner--right user-form">
       <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {% for field in form %}
+          <div class="field">
+            <div class="field-label">
+              {{ field.label_tag }}
+            </div>
+            <div class="field-input">
+              {{ field }}
+            </div>
+          </div>
+        {% endfor %}
         <div class="actions">
           <input type="submit" value="Log in" class="btn">
         </div>
