@@ -1,12 +1,12 @@
 <div class="sidebar">
   <div class="sidebar-header">
-    <a action="#" class="current-user">{{ user.name }}</a>
-    <a action="#" class="create-room-btn">チャットを作成する</a>
+    <a href="{% url 'users:edit' user.pk %}" class="current-user">{{ user.username }}</a>
+    <a href="#" class="create-room-btn">チャットを作成する</a>
   </div>
   <div class="rooms">
     {% for room in rooms %}
       <div  class="room">
-        <a action="#" class="room__link">{{ room.name }}</a>
+        <a href="#" class="room__link">{{ room.name }}</a>
       </div>
     {% endfor %}
   </div>
