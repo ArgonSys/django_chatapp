@@ -12,7 +12,7 @@
 
 - has_many :room_users
 - has_many :rooms, through: :room_users
-- has_many :messages
+- has_many :convos
 
 ## rooms テーブル
 
@@ -24,7 +24,7 @@
 
 - has_many :room_users
 - has_many :users, through: :room_users
-- has_many :messages
+- has_many :convos
 
 ## room_users テーブル
 
@@ -38,7 +38,7 @@
 - belongs_to :room
 - belongs_to :user
 
-## messages テーブル
+## convos テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
