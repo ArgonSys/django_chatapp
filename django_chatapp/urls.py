@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from convos.views import ConvosView
+
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", ConvosView.as_view(), name="top"),
     path("convos/", include("convos.urls")),
 ]
