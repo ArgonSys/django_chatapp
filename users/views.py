@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import(
     LoginView as BaseLoginView,
     LogoutView as BaseLogoutView,
     PasswordResetView as BasePasswordResetView
 )
-
+from django.urls import reverse_lazy
 
 from .forms import(
     UserCreationForm,
@@ -51,15 +52,20 @@ class LoginView(BaseLoginView):
     success_url = "/"
 
 
-class LogoutView(BaseLogoutView):
-    pass
+class LogoutView(LoginRequiredMixin, BaseLogoutView):
+    login_url = reverse_lazy("users:login")
+    redirect_field_name = "redirect_to"
 
 
-class PasswordResetView(BasePasswordResetView):
-    pass
+class PasswordResetView(LoginRequiredMixin, BasePasswordResetView):
+    login_url = reverse_lazy("users:login")
+    redirect_field_name = "redirect_to"
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy("users:login")
+    redirect_field_name = "redirect_to"
+
     model = User
     template_name = "users/edit.html"
     form_class = UserChangeForm
