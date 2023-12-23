@@ -27,6 +27,7 @@ class UserCreationForm(BaseUserCreationForm):
 class UserChangeForm(BaseUserChangeForm):
     class Meta(BaseUserChangeForm.Meta):
         model = User
+        fields = ("username", "email",)
 
 class PasswordResetForm(BasePasswordResetForm):
     pass
