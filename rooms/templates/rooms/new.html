@@ -1,12 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block main %}
 <div class='chat-room-form'>
   <h1>新規チャットルーム</h1>
-  <%=form_with model: @room, local: true do |f|%>
+  <form method="post">
+    {% csrf_token %}
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'>
-        <%= f.label :name, :チャットルーム名, class: 'chat-room-form__label'%>
+        {{ form.name.label_tag }}
       </div>
       <div class='chat-room-form__field--right'>
-        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+        {{ form.name }}
       </div>
     </div>
     <div class='chat-room-form__field'>
@@ -18,21 +23,19 @@
       <div class='chat-room-form__field--right'>
         <select name="room[user_ids][]">
           <option>チャットするユーザーを選択してください</option>
-          <% @users.each do |user| %>
-            <option value=<%= user.id %>><%= user.name %></option>
-          <% end %>
+          {% for u in users %}
+            <option value={{ u.pk }}>{{ u.username }}</option>
+          {% endfor %}
         </select>
-        <% binding.pry %>
-
-        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
-        <% binding.pry %>
+        <input name="room[user_ids][]" type="hidden" value={{ user.pk }}>
       </div>
     </div>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'></div>
       <div class='chat-room-form__field--right'>
-        <%= f.submit class: 'chat-room-form__action-btn'%>
+        <input type="submit" class="chat-room-form__action-btn">
       </div>
     </div>
-  <% end %>
+  </form>
 </div>
+{% endblock %}
