@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import(
     LoginView as BaseLoginView,
     LogoutView as BaseLogoutView,
@@ -14,6 +14,7 @@ from .forms import(
     AuthenticationForm,
     PasswordResetForm
 )
+from .models import User
 
 
 class SignupView(CreateView):
@@ -56,3 +57,10 @@ class LogoutView(BaseLogoutView):
 
 class PasswordResetView(BasePasswordResetView):
     pass
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = "users/edit.html"
+    form_class = UserChangeForm
+    success_url = "/"
