@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
     "convos.apps.ConvosConfig",
+    "rooms.apps.RoomsConfig",
 ]
 
 MIDDLEWARE = [
