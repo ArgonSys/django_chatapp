@@ -15,6 +15,15 @@ class SignupView(CreateView):
     form_class = UserCreationForm
     success_url = "/"
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password1")
+        user = authenticate(email=email, password=password)
+        login(self.request, user)
+        return response
+
+
 class LoginView(BaseLoginView):
     template_name = "users/login.html"
     form_class = AuthenticationForm
