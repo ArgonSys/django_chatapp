@@ -7,4 +7,4 @@ from django.http import HttpResponse
 
 class ConvosView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse(b"ConvosView")
+        return render(request, "convos/index.html")
