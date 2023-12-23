@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=150,
         unique=False,
         help_text=_(
-            "150 characters or fewer. Letters, digits and @/./+/-/_ only."
+            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
         ),
         validators=[username_validator],
         error_messages={
