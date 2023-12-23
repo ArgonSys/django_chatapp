@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import (
     AuthenticationForm as BaseAuthenticationForm,
     UserCreationForm as BaseUserCreationForm,
-    UserChangeForm as BaseUserChangeForm
+    UserChangeForm as BaseUserChangeForm,
+    PasswordResetForm as BasePasswordResetForm
 )
 
 from .models import User
@@ -18,3 +19,6 @@ class UserCreationForm(BaseUserCreationForm):
 class UserChangeForm(BaseUserChangeForm):
     class Meta(BaseUserChangeForm.Meta):
         model = User
+
+class PasswordResetForm(BasePasswordResetForm):
+    pass

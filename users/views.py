@@ -3,11 +3,17 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from django.contrib.auth.views import(
     LoginView as BaseLoginView,
-    LogoutView as BaseLogoutView
+    LogoutView as BaseLogoutView,
+    PasswordResetView as BasePasswordResetView
 )
 
 
-from .forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from .forms import(
+    UserCreationForm,
+    UserChangeForm,
+    AuthenticationForm,
+    PasswordResetForm
+)
 
 
 class SignupView(CreateView):
@@ -29,5 +35,10 @@ class LoginView(BaseLoginView):
     form_class = AuthenticationForm
     success_url = "/"
 
+
 class LogoutView(BaseLogoutView):
+    pass
+
+
+class PasswordResetView(BasePasswordResetView):
     pass
