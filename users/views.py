@@ -26,12 +26,12 @@ class SignupView(CreateView):
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect("top")
-        super().get(request,*args, **kwargs)
+        return super().get(request,*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect("top")
-        super().post(request,*args, **kwargs)
+        return super().post(request,*args, **kwargs)
 
 
     def form_valid(self, form):
