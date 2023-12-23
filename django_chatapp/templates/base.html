@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extendheader %}{% endblock %}
   </head>
-  {% block main %}{% endblock %}
   <body>
-    <%= yield %>
+  {% block main %}{% endblock %}
   </body>
 </html>
