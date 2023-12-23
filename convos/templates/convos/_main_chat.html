@@ -1,0 +1,23 @@
+<div class="main">
+  <div class="main-header">
+    <div class="mainroom">{{ room.name }}</div>
+    <a href="#" class="del-room-btn">チャットを終了する</a>
+    {% comment %} <form action="#" method="post">
+      {% csrf_token %}
+      <button type="submit" value="チャットを終了する">
+    </form> {% endcomment %}
+  </div>
+  <div class="convos">
+    {% for convo in convos %}
+      {% include "convos/_convo.html" %}
+    {% endfor %}
+  </div>
+  <form action="#" class="convo-form">
+    {% csrf_token %}
+    <div class="input-form">
+      {{ form.text }} <!--class: "text-form"-->
+      {{ form.img }} <!--class: "img-btn"-->
+    </div>
+    <input type="submit" value="送信" class="submit-btn">
+  </form>
+</div>

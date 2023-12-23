@@ -90,8 +90,8 @@ li {
 }
 
 .main-header,
-.posts,
-.post-form {
+.convos,
+.convo-form {
   padding: 0 40px;
 }
 
@@ -113,19 +113,19 @@ li {
   border: 1px solid darkred;
 }
 
-.posts {
+.convos {
   height: calc(100% - 190px);
   background-color: #FAFAFA;
   padding-top: 46px;
   overflow: scroll;
 }
 
-.post {
+.convo {
   padding: 10px 10px 0 10px;
   margin-bottom: 40px;
 }
 
-.post-header {
+.convo-header {
   display: flex;
   margin-bottom: 10px;
 }
@@ -141,12 +141,12 @@ li {
   color: #999;
 }
 
-.content {
+.text {
   font-size: 14px;
   color: #434A54;
 }
 
-.post-form {
+.convo-form {
   height: 90px;
   background-color: #DDDDDD;
   padding-top: 20px;
