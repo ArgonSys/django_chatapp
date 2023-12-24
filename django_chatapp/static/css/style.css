@@ -415,9 +415,11 @@ select {
   box-sizing: border-box;
  }
 
-button.btn {
-  cursor: pointer;
-}
 form.a-like-btn {
   display: inline-block;
+}
+
+form.a-like-btn button {
+  cursor: pointer;
+  background: transparent;
 }

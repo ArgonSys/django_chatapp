@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import RoomView, RoomCreateView
+from .views import RoomView, RoomCreateView, RoomDeleteView
 
 app_name = "rooms"
 
@@ -24,4 +24,5 @@ app_name = "rooms"
 urlpatterns = [
     path("", RoomView.as_view(), name="index"),
     path("new/", RoomCreateView.as_view(), name="new"),
+    path("<int:pk>/delete/", RoomDeleteView.as_view(), name="delete")
 ]

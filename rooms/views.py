@@ -1,12 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseNotAllowed
 from django.views import View
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 from .models import Room
 from .forms import RoomForm
 from users.models import User
+
 
 class RoomView(LoginRequiredMixin, View):
     login_url = reverse_lazy("users:login")
@@ -43,3 +46,15 @@ class RoomCreateView(LoginRequiredMixin, CreateView):
         else:
             users = User.objects.exclude(pk=request.user.pk)
             return render(request, self.template_name, {"form": form, "users": users})
+
+
+class RoomDeleteView(View):
+    def get(self, request, pk):
+        return HttpResponseNotAllowed(_("Room deletion via GET method is not allowed"))
+
+    def post(self, request, pk):
+        room = get_object_or_404(Room, pk=pk)
+        if request.user in room.users.all():
+            room.delete()
+            return redirect("rooms:index")
+        return HttpResponseNotAllowed(_("Only room member can delete the room"))

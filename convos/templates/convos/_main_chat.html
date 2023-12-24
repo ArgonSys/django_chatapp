@@ -1,22 +1,22 @@
 <div class="main">
   <div class="main-header">
     <div class="mainroom">{{ room.name }}</div>
-    <a href="#" class="del-room-btn">チャットを終了する</a>
-    {% comment %} <form action="#" method="post">
+    <form action="{% url 'rooms:delete' room.pk %}" method="post" class="a-like-btn">
       {% csrf_token %}
-      <button type="submit" value="チャットを終了する">
-    </form> {% endcomment %}
+      <button type="submit" class="del-room-btn a-like-btn">チャットを終了する</button>
+    </form>
   </div>
   <div class="convos">
     {% for convo in convos %}
       {% include "convos/_convo.html" %}
     {% endfor %}
   </div>
-  <form action="#" class="convo-form">
+  <form action="#" method="post" enctype="multipart/form-data" class="convo-form">
     {% csrf_token %}
     <div class="input-form">
-      {{ form.text }} <!--class: "text-form"-->
-      {{ form.img }} <!--class: "img-btn"-->
+      {{ form.text }}
+      <label for={{ form.image.id_for_label }} class="img-btn">画像</label>
+      {{ form.image }}
     </div>
     <input type="submit" value="送信" class="submit-btn">
   </form>
