@@ -17,16 +17,21 @@ class ConvosView(LoginRequiredMixin, View):
 
     form_class = ConvoForm
 
+
     def get(self, request, room_pk):
-        form = ConvoForm
         room = Room.objects.get(pk=room_pk)
+        if not request.user in room.users.all():
+            return redirect("rooms:index")
+        form = ConvoForm
         convos = room.convo_set.prefetch_related("post_by")
         return render(request, "convos/index.html", {"form": form, "convos": convos, "room": room, "rooms": request.user.rooms.all()})
 
-    def post(self, request, room_pk):
-        form = ConvoForm(request.POST)
-        room = Room.objects.get(pk=room_pk)
 
+    def post(self, request, room_pk):
+        room = Room.objects.get(pk=room_pk)
+        if not request.user in room.users.all():
+            return redirect("rooms:index")
+        form = ConvoForm(request.POST)
         if form.is_valid:
             convo = Convo()
             convo.text = request.POST.get("text")
