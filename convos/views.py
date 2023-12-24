@@ -39,7 +39,8 @@ class ConvosView(LoginRequiredMixin, View):
             convo.post_by = request.user
             convo.post_to = room
             convo.save()
-            resize_image(convo.image.url)
+            if bool(convo.image):
+                resize_image(convo.image.url)
             return redirect("convos:index", room_pk=room_pk)
         return render(request, "convos/index.html", {"form": form, "room": room, "rooms": request.user.rooms.all()})
 
@@ -50,3 +51,4 @@ def resize_image(url):
         os.remove(url)
         img_resized = img_file.resize((500, 500))
         img_resized.save(url)
+    return
