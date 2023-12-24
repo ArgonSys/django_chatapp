@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import RoomCreateView
+from .views import RoomView, RoomCreateView
 
 app_name = "rooms"
 
 
 urlpatterns = [
+    path("", RoomView.as_view(), name="index"),
     path("new/", RoomCreateView.as_view(), name="new"),
 ]
