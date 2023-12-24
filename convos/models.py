@@ -7,7 +7,7 @@ from rooms.models import Room
 
 class Convo(models.Model):
     text = models.TextField()
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
     post_by = models.ForeignKey(
         User,
         verbose_name=_("message"),
