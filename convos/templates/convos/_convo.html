@@ -1,11 +1,13 @@
 <div class="post">
   <div class="post-header">
-    <div class="author">{{ convo.user.name }}</div>
+    <div class="author">{{ convo.post_by.username }}</div>
     <div class="datetime">{{ convo.created_at }}</div>
   </div>
   <div class="text">
     {{ convo.text }}
   </div>
-  <img href="{{ convo.image }}" class="convo-image">
+  {% if convo.image %}
+    <img src="{{ convo.image.url }}" class="convo-image">
+  {% endif %}
   {% comment %} <%= image_tag message.image.variant(resize: '500x500'), class: "message-image" if message.image.attached? %> {% endcomment %}
 </div>
