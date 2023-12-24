@@ -16,15 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+from . import settings
 
-from convos.views import ConvosView
+from rooms.views import RoomView
 
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", ConvosView.as_view(), name="top"),
+    path("", RoomView.as_view(), name="top"),
     path("users/", include("users.urls")),
     path("rooms/", include("rooms.urls")),
-    path("convos/", include("convos.urls")),
+    path("rooms/<int:room_pk>/", include("convos.urls")),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
