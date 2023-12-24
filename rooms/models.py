@@ -9,6 +9,7 @@ class Room(models.Model):
         related_name="rooms",
         related_query_name="room"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _("room")
