@@ -2,37 +2,39 @@
 
 
 {% block main %}
-<div class='chat-room-form'>
+<div class="chat-room-form">
   <h1>新規チャットルーム</h1>
   <form method="post">
     {% csrf_token %}
-    <div class='chat-room-form__field'>
-      <div class='chat-room-form__field--left'>
-        {{ form.name.label_tag }}
+    <div class="chat-room-form__field">
+      <div class="chat-room-form__field--left">
+        <label for="{{ form.name.id_for_label }}" class="chat-room-form__label">チャットルーム名</label>
       </div>
-      <div class='chat-room-form__field--right'>
+      <div class="chat-room-form__field--right">
         {{ form.name }}
       </div>
     </div>
-    <div class='chat-room-form__field'>
+    <div class="chat-room-form__field">
     </div>
-    <div class='chat-room-form__field'>
-      <div class='chat-room-form__field--left'>
-        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+    <div class="chat-room-form__field">
+      <div class="chat-room-form__field--left">
+        <label class="chat-room-form__label" for="{{ form.users.id_for_label }}">チャットメンバー</label>
       </div>
-      <div class='chat-room-form__field--right'>
-        <select name="room[user_ids][]">
+      <div class="chat-room-form__field--right">
+        <select name="users" required id="{{ form.users.id_for_label }}">
           <option>チャットするユーザーを選択してください</option>
           {% for u in users %}
-            <option value={{ u.pk }}>{{ u.username }}</option>
+            {% if u != user %}
+              <option value={{ u.pk }}>{{ u.username }}</option>
+            {% endif %}
           {% endfor %}
         </select>
         <input name="room[user_ids][]" type="hidden" value={{ user.pk }}>
       </div>
     </div>
-    <div class='chat-room-form__field'>
-      <div class='chat-room-form__field--left'></div>
-      <div class='chat-room-form__field--right'>
+    <div class="chat-room-form__field">
+      <div class="chat-room-form__field--left"></div>
+      <div class="chat-room-form__field--right">
         <input type="submit" class="chat-room-form__action-btn">
       </div>
     </div>
